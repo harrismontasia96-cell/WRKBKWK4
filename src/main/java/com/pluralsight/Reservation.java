@@ -1,21 +1,20 @@
 package com.pluralsight;
 
-public class Reservations {
+public class Reservation {
 
     private String RoomType;
     private double Pricepernight;
-    private boolean NumberOfNights;
+    private int NumberOfNights;
     private boolean isWeekend;
     private double ReservationTotal;
 
 
-
-    public Reservations( String RoomType, double Pricepernight, boolean NumberOfNights, boolean isWeekend, double ReservationTotal ) {
+    public Reservation(String RoomType, double Pricepernight, int NumberOfNights, boolean isWeekend) {
         setRoomType(RoomType);
         this.Pricepernight = Pricepernight;
         this.NumberOfNights = NumberOfNights;
-        this.isWeekend= isWeekend;
-        this.ReservationTotal= ReservationTotal;
+        this.isWeekend = isWeekend;
+
 
     }
 
@@ -23,32 +22,34 @@ public class Reservations {
         return RoomType;
     }
 
-        public void setRoomType(String roomType) {
-            this.roomType = roomType.toLowerCase(); // make it case-insensitive
-            if (this.roomType.equals("king")) {
-                this.pricePerNight = 139.00;
-            } else if (this.roomType.equals("double")) {
-                this.pricePerNight = 124.00;
-            } else {
-                throw new IllegalArgumentException("Invalid room type. Must be 'king' or 'double'.");
-            }
+    public void setRoomType(String roomType) {
+        this.RoomType = roomType.toLowerCase().trim();
 
+        if (this.RoomType.equals("king")) {
+            this.Pricepernight = 139.00;
+        }
+        else if (this.RoomType.equals("double") || this.RoomType.equals("double bed")) {
+            this.Pricepernight = 124.00;
+        }
+        else {
+            throw new IllegalArgumentException("Invalid room type. Must be 'king' or 'double bed'.");
+        }
     }
 
     public double getPrice () {
         if (isWeekend) {
-            return pricePerNight * 1.10;
+            return Pricepernight * 1.10;
         } else {
-            return pricePerNight;
+            return Pricepernight;
         }
     }
 
 
-    public boolean getNumberOfNights () {
+    public int getNumberOfNights () {
         return NumberOfNights;
     }
     public void setNumberOfNights(int numberOfNights) {
-        this.numberOfNights = numberOfNights;
+        this.NumberOfNights = numberOfNights;
     }
 
     public boolean isWeekend()  {
@@ -59,11 +60,11 @@ public class Reservations {
     }
 
     public double getReservationTotal() {
-        return getPrice() * numberOfNights;
+        return getPrice() * NumberOfNights;
 
     }
     public static void main(String[] args) {
-        Reservation r1 = new Reservation("king", 3, true);
+        Reservation r1 = new Reservation("king", 139.00, 3,true);
         System.out.println("Room Type: " + r1.getRoomType());
         System.out.println("Price per Night: $" + r1.getPrice());
         System.out.println("Number of Nights: " + r1.getNumberOfNights());
