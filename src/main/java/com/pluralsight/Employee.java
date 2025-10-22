@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.time.LocalDateTime;
+
 public class Employee {
     public static void main(String[] args) {
 
@@ -56,6 +58,16 @@ public class Employee {
     public void PunchIn(double time) {
         this.punchIn = time;
         this.starttime = (int) time;
+        LocalDateTime now = LocalDateTime.now();
+        int hour = now.getHour();
+        int minute = now.getMinute();
+
+         time = hour + (minute / 60.0);
+
+        this.punchIn = time;
+        this.starttime = hour * 60 + minute;
+        System.out.println(name + " clocked in at " + hour + ":" + String.format("%02d", minute));
+
 
     }
     public void Punchout(double time) {
@@ -63,6 +75,22 @@ public class Employee {
         this.endtime = (int) time;
         this.hoursWorked += (this.endtime - this.starttime);
         this.starttime = 0;
+
+        LocalDateTime now = LocalDateTime.now();
+        int hour = now.getHour();
+        int minute = now.getMinute();
+
+         time = hour + (minute / 60.0);
+        this.punchout = time;
+        this.endtime = hour * 60 + minute;
+
+        double workedMinutes = this.endtime - this.starttime;
+        this.hoursWorked += workedMinutes / 60.0;
+
+        System.out.println(name + " clocked out at " + hour + ":" + String.format("%02d", minute));
+
+
+
     }
     public int punchtimeCard() {
         return punchTimeCard;
