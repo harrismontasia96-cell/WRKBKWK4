@@ -5,7 +5,7 @@ import javax.naming.Name;
 
 public class Main {
     public static void main(String[] args) {
-        Employee montasia = new Employee(1, "montasia", "HR", 40.50, 0,8.0, 18.0, 8, 17.0, 1234);
+        Employee montasia = new Employee(1, "montasia", "HR", 40.50, 0,8.0, 18.0, 8, 17, 1234,0);
 
         montasia.PunchIn(6.00);
         montasia.Punchout(10.00);

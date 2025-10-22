@@ -31,6 +31,7 @@ public class Employee {
         this.starttime = starttime;
         this.endtime = endtime;
         this.punchTimeCard  = punchTimeCard;
+        this.Totalpay = Totalpay;
     }
 
     public int getEmployeeId() {
@@ -84,8 +85,8 @@ public class Employee {
     public double getendtime() {
         return endtime;
     }
-    public int getTotalPay() {
-        return Totalpay;
+    public double getTotalPay() {
+        return hoursWorked * payRate;
     }
     public void setTotalpay() {
         this.Totalpay = Totalpay;
